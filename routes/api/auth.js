@@ -1,9 +1,17 @@
 const express = require("express");
-const { validateBody } = require("../../middlewares");
-const schemas = require("../../schemas");
-const ctrl = require("../../controllers/auth/register");
 
 const router = express.Router();
 
-router.post("/register", validateBody(schemas.registerSchema), ctrl.register);
+const ctrlUser = require("../../controllers/users");
+const { ctrlWrapper } = require("../../helpers");
+
+const { validateBody } = require("../../middlewares");
+const schemas = require("../../schemas");
+
+router.post(
+  "/register",
+  validateBody(schemas.registerSchema),
+  ctrlWrapper(ctrlUser.register)
+);
+
 module.exports = router;
