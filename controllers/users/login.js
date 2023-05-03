@@ -20,11 +20,11 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
-  res.json({
+  res.status(200).json({
     token,
     user: {
       email,
-      subscriptios: user.subscription,
+      subscription: user.subscription,
     },
   });
 };
