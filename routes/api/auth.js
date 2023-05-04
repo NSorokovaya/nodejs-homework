@@ -21,6 +21,13 @@ router.post(
 );
 
 router.patch(
+  "/",
+  authenticate,
+  validateBody(schemas.updateSubscription),
+  ctrlWrapper(ctrlUser.updateSubscription)
+);
+
+router.patch(
   "/avatars",
   authenticate,
   upload.single("avatar"),
@@ -30,4 +37,5 @@ router.patch(
 router.get("/current", authenticate, ctrlWrapper(ctrlUser.getCurrent));
 
 router.post("/logout", authenticate, ctrlWrapper(ctrlUser.logout));
+
 module.exports = router;
