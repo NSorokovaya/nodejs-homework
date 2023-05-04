@@ -7,6 +7,7 @@ const validateBody = (schema) => {
       next(RequestError(400, error.message));
     }
     next();
+    console.log(error);
   };
 
   return func;
